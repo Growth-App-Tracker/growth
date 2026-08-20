@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A0D0B">
+<meta name="color-scheme" content="dark">
+<title>GROWTH</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<!-- ══ ARRANQUE ══ -->
+<div class="screen" id="screen-boot">
+  <h1 class="wordmark">GROWTH</h1>
+  <div class="wordmark-sub">Iniciando sistema</div>
+  <div class="boot-bar"></div>
+</div>
+
+<!-- ══ FALTA CONFIGURAR FIREBASE ══ -->
+<div class="screen" id="screen-setup" hidden>
+  <h1 class="wordmark">GROWTH</h1>
+  <div class="wordmark-sub">Falta un paso</div>
+
+  <div class="screen-panel">
+    <div class="lbl" style="margin-bottom:var(--s4)">Conectar la base de datos</div>
+    <p style="color:var(--text-dim);font-size:var(--fs-small);margin:0 0 var(--s5);line-height:1.6">
+      La app está lista, pero todavía no sabe dónde guardar tus datos.
+      Haz esto una sola vez:
+    </p>
+    <ol class="steps">
+      <li>Entra a <strong>console.firebase.google.com</strong> y crea un proyecto nuevo llamado <strong>growth</strong>.</li>
+      <li>En el menú izquierdo: <strong>Build → Firestore Database → Create database</strong>. Escoge <strong>Production mode</strong> y la región <code>nam5</code>.</li>
+      <li>Luego <strong>Build → Authentication → Get started → Google</strong> y actívalo.</li>
+      <li>En <strong>Project settings ⚙ → Your apps</strong>, haz clic en el ícono <code>&lt;/&gt;</code> (Web) y registra la app.</li>
+      <li>Copia el bloque <code>firebaseConfig</code> que te muestra y <strong>pégamelo en el chat</strong>. Yo lo pongo en su lugar.</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ══ LOGIN ══ -->
+<div class="screen" id="screen-auth" hidden>
+  <h1 class="wordmark">GROWTH</h1>
+  <div class="wordmark-sub">Acceso privado</div>
+
+  <div class="screen-panel center" style="max-width:380px">
+    <p style="color:var(--text-dim);font-size:var(--fs-small);margin:0 0 var(--s5);line-height:1.6">
+      Este panel está amarrado a una sola cuenta.<br>Nadie más puede entrar aunque tenga el enlace.
+    </p>
+    <button class="btn btn-primary btn-lg btn-block" id="btn-google">Entrar con Google</button>
+    <div id="auth-error" class="lbl" style="color:var(--alert);margin-top:var(--s4);line-height:1.6;text-transform:none;letter-spacing:0.02em;font-size:var(--fs-small)" hidden></div>
+  </div>
+</div>
+
+<!-- ══ APP ══ -->
+<div id="app" hidden>
+
+  <header class="topbar">
+    <div class="topbar-mark">GROWTH</div>
+    <div class="topbar-meta">
+      <div class="topbar-clock" id="clock">--:--</div>
+      <div class="status-dot" id="status-dot" data-state="online" title="Conectado"></div>
+    </div>
+  </header>
+
+  <nav class="bottomnav" id="nav"></nav>
+
+  <div class="dayrail" id="dayrail"></div>
+
+  <main class="view" id="view"></main>
+
+</div>
+
+<div id="modal-root"></div>
+<div class="toast-wrap" id="toast-root"></div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
