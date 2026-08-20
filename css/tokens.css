@@ -1,0 +1,126 @@
+/* ============================================================
+   GROWTH — sistema visual
+   Cuatro colores. Si algo pide un quinto, el dato está mal clasificado.
+   ============================================================ */
+
+:root {
+  /* ── Fondos ── */
+  --bg:            #0A0D0B;
+  --surface:       #121713;
+  --surface-2:     #171E19;
+  --surface-3:     #1D2620;
+
+  /* ── Líneas ── */
+  --line:          #232C26;
+  --line-soft:     #1A211C;
+  --line-strong:   #33413A;
+
+  /* ── Texto ── */
+  --text:          #E4EDE7;
+  --text-dim:      #8FA096;
+  --text-faint:    #5C6B62;
+
+  /* ── Áreas (clasificación) ── */
+  --agro:          #3DD68C;
+  --savia:         #FF8A4C;
+  --personal:      #B08CF0;
+  --now:           #4CC9F0;
+
+  /* Versiones translúcidas para fondos y aureolas */
+  --agro-dim:      rgba(61, 214, 140, 0.12);
+  --savia-dim:     rgba(255, 138, 76, 0.12);
+  --personal-dim:  rgba(176, 140, 240, 0.12);
+  --now-dim:       rgba(76, 201, 240, 0.12);
+
+  --agro-line:     rgba(61, 214, 140, 0.35);
+  --savia-line:    rgba(255, 138, 76, 0.35);
+  --personal-line: rgba(176, 140, 240, 0.35);
+  --now-line:      rgba(76, 201, 240, 0.40);
+
+  /* Alerta — no es un quinto color de clasificación, es un estado */
+  --alert:         #FF5C5C;
+  --alert-dim:     rgba(255, 92, 92, 0.12);
+
+  /* ── Tipografía ── */
+  --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --sans: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --fs-micro:  10px;
+  --fs-label:  11px;
+  --fs-small:  12px;
+  --fs-body:   14px;
+  --fs-lg:     16px;
+  --fs-xl:     20px;
+  --fs-2xl:    28px;
+  --fs-3xl:    40px;
+
+  --track-wide:  0.14em;
+  --track-mid:   0.08em;
+
+  /* ── Espaciado ── */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --s7: 48px;
+
+  /* ── Forma ── */
+  --radius: 2px;
+  --border: 1px solid var(--line);
+
+  /* ── Movimiento ── */
+  --t-fast: 120ms cubic-bezier(0.2, 0, 0.1, 1);
+  --t-mid:  180ms cubic-bezier(0.2, 0, 0.1, 1);
+
+  /* ── Medidas ── */
+  --topbar-h: 52px;
+  --nav-h:    58px;
+  --rail-h:   72px;
+}
+
+/* Etiqueta técnica: mono, mayúsculas, tracking amplio.
+   Se usa para datos, estados, encabezados de campo y números. */
+.lbl {
+  font-family: var(--mono);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--text-faint);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.lbl-micro {
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--text-faint);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.num {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* Pinta un contenedor con el color de su área.
+   Se usa como: <div class="area-agro"> y adentro var(--area) */
+.area-agro     { --area: var(--agro);     --area-dim: var(--agro-dim);     --area-line: var(--agro-line); }
+.area-savia    { --area: var(--savia);    --area-dim: var(--savia-dim);    --area-line: var(--savia-line); }
+.area-personal { --area: var(--personal); --area-dim: var(--personal-dim); --area-line: var(--personal-line); }
+.area-now      { --area: var(--now);      --area-dim: var(--now-dim);      --area-line: var(--now-line); }
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --t-fast: 1ms; --t-mid: 1ms; }
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}
