@@ -1,0 +1,28 @@
+// ============================================================
+// GROWTH — candado de la base de datos
+//
+// Pega esto en:
+// Firebase Console → Firestore Database → pestaña "Rules" → Publish
+//
+// Qué hace: solo deja entrar a una cuenta, y solo a sus propios
+// datos. Aunque alguien tenga el enlace de la app y una cuenta de
+// Google, no puede leer ni escribir nada.
+// ============================================================
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /users/{uid}/{document=**} {
+      allow read, write: if request.auth != null
+        && request.auth.uid == uid
+        && request.auth.token.email == 'christianbartholomew97@gmail.com';
+    }
+
+    // Todo lo demás queda cerrado.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
